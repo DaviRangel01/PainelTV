@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerador de Avisos Manuais</title>
+    <style>
+        body { 
+            font-family: Arial, sans-serif; 
+            max-width: 800px; 
+            margin: 0 auto; 
+            padding: 20px; 
+            background: #f0f0f0; 
+        }
+        .aviso-container {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 60px 40px;
+            border-radius: 15px;
+            text-align: center;
+            color: white;
+            margin: 20px 0;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        .aviso-titulo {
+            font-size: 3em;
+            font-weight: bold;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+        .aviso-texto {
+            font-size: 1.8em;
+            margin-bottom: 20px;
+            line-height: 1.4;
+        }
+        .aviso-data {
+            font-size: 1.2em;
+            opacity: 0.8;
+            font-style: italic;
+        }
+        .controles {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+        input, select, textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+        button {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1.1em;
+            margin: 10px 0;
+        }
+        button:hover { background: #5a6fd8; }
+        .instrucoes {
+            background: #e3f2fd;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>🎨 Gerador de Avisos Manuais</h1>
+    
+    <div class="instrucoes">
+        <h3>📋 Como usar:</h3>
+        <ol>
+            <li>Preencha os campos abaixo</li>
+            <li>Clique em "Capturar Screenshot"</li>
+            <li>Salve a imagem na pasta <code>avisos/</code></li>
+            <li>O aviso aparecerá automaticamente no painel</li>
+        </ol>
+    </div>
+
+    <div class="controles">
+        <h3>⚙️ Configurações do Aviso</h3>
+        
+        <label>📝 Título:</label>
+        <input type="text" id="titulo" value="AVISO IMPORTANTE" placeholder="Digite o título do aviso">
+        
+        <label>💬 Mensagem:</label>
+        <textarea id="mensagem" rows="3" placeholder="Digite a mensagem do aviso">Reunião geral hoje às 14h na sala de conferências.</textarea>
+        
+        <label>🎨 Estilo:</label>
+        <select id="estilo">
+            <option value="azul">Azul (Padrão)</option>
+            <option value="verde">Verde (Sucesso)</option>
+            <option value="laranja">Laranja (Atenção)</option>
+            <option value="vermelho">Vermelho (Urgente)</option>
+            <option value="roxo">Roxo (Informativo)</option>
+        </select>
+        
+        <label>📅 Incluir Data:</label>
+        <input type="checkbox" id="incluirData" checked> Mostrar data e hora atual
+        
+        <button onclick="atualizarAviso()">🔄 Atualizar Visualização</button>
+        <button onclick="capturarScreenshot()">📸 Capturar Screenshot</button>
+    </div>
+
+    <!-- Preview do aviso -->
+    <div id="avisoPreview" class="aviso-container">
+        <div class="aviso-titulo">AVISO IMPORTANTE</div>
+        <div class="aviso-texto">Reunião geral hoje às 14h na sala de conferências.</div>
+        <div class="aviso-data">Gerado em: <span id="dataAtual"></span></div>
+    </div>
+
+    <script>
+        // Atualizar data
+        function atualizarData() {
+            const agora = new Date();
+            document.getElementById('dataAtual').textContent = 
+                agora.toLocaleString('pt-BR');
+        }
+
+        // Estilos dos avisos
+        const estilos = {
+            azul: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+            verde: 'linear-gradient(135deg, #56ab2f 0%, #a8e6cf 100%)',
+            laranja: 'linear-gradient(135deg, #ff7e5f 0%, #feb47b 100%)',
+            vermelho: 'linear-gradient(135deg, #ff416c 0%, #ff4b2b 100%)',
+            roxo: 'linear-gradient(135deg, #a8edea 0%, #fed6e3 100%)'
+        };
+
+        // Atualizar preview do aviso
+        function atualizarAviso() {
+            const titulo = document.getElementById('titulo').value || 'AVISO IMPORTANTE';
+            const mensagem = document.getElementById('mensagem').value || 'Digite sua mensagem aqui';
+            const estilo = document.getElementById('estilo').value;
+            const incluirData = document.getElementById('incluirData').checked;
+            
+            const preview = document.getElementById('avisoPreview');
+            
+            // Atualizar conteúdo
+            preview.querySelector('.aviso-titulo').textContent = titulo;
+            preview.querySelector('.aviso-texto').textContent = mensagem;
+            
+            // Mostrar/esconder data
+            const dataElement = preview.querySelector('.aviso-data');
+            dataElement.style.display = incluirData ? 'block' : 'none';
+            
+            // Aplicar estilo
+            preview.style.background = estilos[estilo];
+            
+            atualizarData();
+        }
+
+        // Capturar screenshot (simulação - usuário deve usar ferramenta do sistema)
+        function capturarScreenshot() {
+            alert(`📸 Para capturar o screenshot:
+
+Windows:
+• Use a Ferramenta de Captura (Win + Shift + S)
+• Selecione apenas o aviso colorido
+• Salve na pasta 'avisos/' como 'aviso_manual_${Date.now()}.png'
+
+Ou:
+• Clique com botão direito sobre o aviso
+• "Inspecionar elemento" 
+• Botão direito no elemento do aviso
+• "Capturar screenshot do nó"
+
+O aviso aparecerá automaticamente no painel da TV! ✅`);
+        }
+
+        // Inicializar
+        atualizarData();
+        setInterval(atualizarData, 1000);
+        
+        // Atualizar preview quando campos mudarem
+        document.getElementById('titulo').addEventListener('input', atualizarAviso);
+        document.getElementById('mensagem').addEventListener('input', atualizarAviso);
+        document.getElementById('estilo').addEventListener('change', atualizarAviso);
+        document.getElementById('incluirData').addEventListener('change', atualizarAviso);
+        
+        // Atalhos de teclado
+        document.addEventListener('keydown', function(e) {
+            if (e.ctrlKey && e.key === 'Enter') {
+                capturarScreenshot();
+            }
+        });
+        
+        console.log('🎨 Gerador de avisos carregado! Ctrl+Enter para capturar.');
+    </script>
+</body>
+</html>

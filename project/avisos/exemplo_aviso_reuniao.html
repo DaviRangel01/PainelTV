@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exemplo - Aviso de Reunião</title>
+    <style>
+        body { 
+            margin: 0; 
+            padding: 20px; 
+            font-family: 'Segoe UI', Arial, sans-serif; 
+            background: #f0f0f0;
+        }
+        
+        .aviso {
+            width: 1200px;
+            height: 675px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            margin: 20px auto;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .aviso::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: rotate 20s linear infinite;
+        }
+        
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .conteudo {
+            position: relative;
+            z-index: 2;
+            padding: 40px;
+        }
+        
+        .icone {
+            font-size: 120px;
+            margin-bottom: 30px;
+            text-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+        
+        .titulo {
+            font-size: 72px;
+            font-weight: bold;
+            margin-bottom: 30px;
+            text-shadow: 0 5px 15px rgba(0,0,0,0.5);
+            letter-spacing: 2px;
+        }
+        
+        .subtitulo {
+            font-size: 36px;
+            margin-bottom: 40px;
+            opacity: 0.9;
+            font-weight: 300;
+        }
+        
+        .detalhes {
+            font-size: 28px;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+        
+        .data-hora {
+            background: rgba(255,255,255,0.2);
+            padding: 20px 40px;
+            border-radius: 15px;
+            font-size: 32px;
+            font-weight: bold;
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255,255,255,0.3);
+        }
+        
+        .instrucoes {
+            background: white;
+            color: #333;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <div class="instrucoes">
+        <h3>📸 Como usar este exemplo:</h3>
+        <ol>
+            <li>Edite o texto abaixo conforme necessário</li>
+            <li>Use <strong>Win + Shift + S</strong> para capturar apenas o aviso colorido</li>
+            <li>Salve como <code>reuniao_hoje.png</code> na pasta <code>avisos/</code></li>
+            <li>O aviso aparecerá automaticamente no painel da TV!</li>
+        </ol>
+    </div>
+
+    <div class="aviso">
+        <div class="conteudo">
+            <div class="icone">👥</div>
+            <div class="titulo">REUNIÃO GERAL</div>
+            <div class="subtitulo">Todos os colaboradores</div>
+            <div class="detalhes">
+                📍 Sala de Conferências Principal<br>
+                📋 Apresentação dos resultados mensais<br>
+                ☕ Coffee break incluso
+            </div>
+            <div class="data-hora">
+                🗓️ HOJE - 14:00h
+            </div>
+        </div>
+    </div>
+
+    <div class="instrucoes">
+        <h3>✏️ Personalize seu aviso:</h3>
+        <p>Edite o HTML acima para criar avisos personalizados. Você pode alterar:</p>
+        <ul>
+            <li><strong>Ícone:</strong> 👥 📊 🎉 ⚠️ 📢 🔧 📅</li>
+            <li><strong>Cores:</strong> Mude o gradient no CSS</li>
+            <li><strong>Texto:</strong> Título, subtítulo e detalhes</li>
+            <li><strong>Data/Hora:</strong> Informações específicas</li>
+        </ul>
+    </div>
+</body>
+</html>
