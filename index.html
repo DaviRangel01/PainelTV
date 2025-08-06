@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel Digital TV - Movecta</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Container principal do painel -->
+    <div class="painel-container">
+        
+        <!-- Header com informações do sistema -->
+        <header class="header">
+            <div class="header-left">
+                <h1 class="titulo-painel">🖥️ PAINEL OPERACIONAL</h1>
+                <span class="empresa">MOVECTA - Dashboard Automático</span>
+            </div>
+            <div class="header-right">
+                <div class="status-sistema">
+                    <span class="status-indicador" id="statusIndicador">🟢</span>
+                    <span class="status-texto" id="statusTexto">Sistema Ativo</span>
+                </div>
+                <div class="data-hora">
+                    <span id="dataHora">Carregando...</span>
+                </div>
+                <div class="proxima-atualizacao">
+                    <span>Próx. atualização: <span id="proximaAtualizacao">--:--</span></span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Container principal do carrossel -->
+        <main class="carrossel-container">
+            
+            <!-- Loading inicial -->
+            <div class="loading-container" id="loadingContainer">
+                <div class="loading-spinner"></div>
+                <p>Carregando avisos e informações...</p>
+            </div>
+            
+            <!-- Container das imagens do carrossel -->
+            <div class="carrossel-slides" id="carrosselSlides">
+                <!-- As imagens serão inseridas aqui dinamicamente pelo JavaScript -->
+            </div>
+            
+            <!-- Indicadores do carrossel -->
+            <div class="carrossel-indicadores" id="carrosselIndicadores">
+                <!-- Indicadores serão criados dinamicamente -->
+            </div>
+            
+            <!-- Controles do carrossel (podem ser ocultados se não necessários) -->
+            <div class="carrossel-controles">
+                <button class="controle anterior" id="anteriorBtn">
+                    <span>◀</span>
+                </button>
+                <div class="info-slide">
+                    <span id="slideAtual">1</span> de <span id="totalSlides">0</span>
+                </div>
+                <button class="controle proximo" id="proximoBtn">
+                    <span>▶</span>
+                </button>
+            </div>
+            
+        </main>
+
+        <!-- Footer com informações adicionais -->
+        <footer class="footer">
+            <div class="footer-left">
+                <span>🔄 Atualização automática a cada 30 minutos</span>
+            </div>
+            <div class="footer-center">
+                <span id="totalAvisos">0 avisos carregados</span>
+            </div>
+            <div class="footer-right">
+                <span>Sistema v1.0 | Desenvolvido para TV</span>
+            </div>
+        </footer>
+
+    </div>
+
+    <!-- Mensagem quando não há avisos -->
+    <div class="sem-avisos" id="semAvisos" style="display: none;">
+        <div class="sem-avisos-content">
+            <h2>📭 Nenhum aviso disponível</h2>
+            <p>Aguardando captura de dados...</p>
+            <div class="loading-spinner"></div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="script.js"></script>
+</body>
+</html>

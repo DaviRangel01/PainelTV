@@ -1,0 +1,7 @@
+# Dependências do Python para o sistema de captura de telas
+selenium==4.18.1
+webdriver-manager==4.0.1
+Pillow==10.2.0
+python-decouple==3.8
+schedule==1.2.0
+requests==2.31.0
